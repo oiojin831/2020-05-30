@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import {firestore} from './firebase'
+import { firestore } from './firebase'
 
 const App = () => {
   const [goods, setGoods] = useState([]);
   const [name, setName] = useState("")
+  const [category, setCategory] = useState("");
+  const [position, setPosition] = useState("");
+  const [price, setPrice] = useState(0);
 
   useEffect(() => {
     firestore
@@ -20,14 +23,20 @@ const App = () => {
       .catch(error => {
         console.log('Error getting documents: ', error);
       });
-  },[])
+  }, [])
 
   const handleSubmit = (e) => {
     //upload name to server
     e.preventDefault();
+    const newData = {
+      name: name,
+      category: category,
+      position: position,
+      price: price,
+    };
     firestore
       .collection("goods")
-      .add({name: name})
+      .add(newData)
       .then((docRef) => {
         console.log("Document written with ID: ", docRef.id);
       })
@@ -43,6 +52,21 @@ const App = () => {
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="text"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        />
+        <input
+          type="text"
+          value={position}
+          onChange={(e) => setPosition(e.target.value)}
+        />
+        <input
+          type="number"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
         />
         <button type="submit">submit</button>
       </form>
