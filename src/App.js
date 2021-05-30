@@ -11,14 +11,14 @@ function App() {
 
 export default App;
 
-function GoodComponent(props) {
+function GoodComponent({name, category, position, price}) {
   return (
-    <div>{`${props.name} - ${props.category} - ${props.position} - ${props.price}원`}</div>
+    <div>{`${name} - ${category} - ${position} - ${price}원`}</div>
   )
 }
 
-const GoodComponent2 = (props) => {
+const GoodComponent2 = ({name, category, position, price}) => {
   return (
-    <div>{`${props.name} - ${props.category} - ${props.position} - ${props.price}원`}</div>
+    <div>{`${name} - ${category} - ${position} - ${price}원`}</div>
   )
 }
