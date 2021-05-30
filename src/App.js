@@ -9,8 +9,8 @@ const App = () => {
     setTimeout(() => {
       delayedData = data;
       console.log(delayedData)
+      setGoods(delayedData)
     }, 2000)
-    setGoods(delayedData)
   }
 
   return (
