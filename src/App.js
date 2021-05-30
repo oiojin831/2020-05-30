@@ -25,7 +25,15 @@ const App = () => {
   const handleSubmit = (e) => {
     //upload name to server
     e.preventDefault();
-    console.log(name)
+    firestore
+      .collection("goods")
+      .add({name: name})
+      .then((docRef) => {
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
+      });
   }
 
   return (
