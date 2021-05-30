@@ -4,7 +4,6 @@ import {firestore} from './firebase'
 const App = () => {
   const [goods, setGoods] = useState([]);
 
-  const handleClick = () => {
     firestore
       .collection('goods')
       .get()
@@ -15,16 +14,15 @@ const App = () => {
           myArr.push(doc.data());
         });
         setGoods(myArr);
+        console.log(goods)
       })
       .catch(error => {
         console.log('Error getting documents: ', error);
       });
 
-  }
 
   return (
     <div>
-      <button onClick={handleClick}> set data</button>
       {goods.map((item, index) => {
         return <GoodComponent
           key={`${index}-${item.name}`}
