@@ -3,22 +3,22 @@ import React from 'react';
 function App() {
   return (
     <div>
-      <GoodComponent />
-      <GoodComponent2 />
+      <GoodComponent name="조던" category="신발" position="신발장" price={300000}/>
+      <GoodComponent2 name="티셔츠" category="옷" position="박스1" price={30000}/>
     </div>
   );
 }
 
 export default App;
 
-function GoodComponent() {
+function GoodComponent(props) {
   return (
-    <div>조던 - 신발 - 신발장 - 300000원</div>
+    <div>{`${props.name} - ${props.category} - ${props.position} - ${props.price}원`}</div>
   )
 }
 
-const GoodComponent2 = () => {
+const GoodComponent2 = (props) => {
   return (
-    <div>티셔츠 - 옷 - 박스1 - 30000원</div>
+    <div>{`${props.name} - ${props.category} - ${props.position} - ${props.price}원`}</div>
   )
 }
