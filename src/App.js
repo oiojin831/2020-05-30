@@ -3,6 +3,7 @@ import {firestore} from './firebase'
 
 const App = () => {
   const [goods, setGoods] = useState([]);
+  const [name, setName] = useState("")
 
   useEffect(() => {
     firestore
@@ -15,17 +16,28 @@ const App = () => {
           myArr.push(doc.data());
         });
         setGoods(myArr);
-        console.log(goods)
       })
       .catch(error => {
         console.log('Error getting documents: ', error);
       });
   },[])
 
-
+  const handleSubmit = (e) => {
+    //upload name to server
+    e.preventDefault();
+    console.log(name)
+  }
 
   return (
     <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <button type="submit">submit</button>
+      </form>
       {goods.map((item, index) => {
         return <GoodComponent
           key={`${index}-${item.name}`}
