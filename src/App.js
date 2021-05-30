@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {firestore} from './firebase'
 
 const App = () => {
   const [goods, setGoods] = useState([]);
 
+  useEffect(() => {
     firestore
       .collection('goods')
       .get()
@@ -19,6 +20,8 @@ const App = () => {
       .catch(error => {
         console.log('Error getting documents: ', error);
       });
+  },[])
+
 
 
   return (
