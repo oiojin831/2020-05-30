@@ -3,9 +3,19 @@ import React, { useState } from 'react';
 const App = () => {
   const [goods, setGoods] = useState([]);
 
+  const handleClick = () => {
+    //let delayedData;
+    let delayedData = [];
+    setTimeout(() => {
+      delayedData = data;
+      console.log(delayedData)
+    }, 2000)
+    setGoods(delayedData)
+  }
+
   return (
     <div>
-      <button onClick={() => setGoods(data)}> set data</button>
+      <button onClick={handleClick}> set data</button>
       {goods.map((item, index) => {
         return <GoodComponent
           key={`${index}-${item.name}`}
