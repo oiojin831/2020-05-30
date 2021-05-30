@@ -28,12 +28,19 @@ const App = () => {
       price: 200000
     }
   ];
+  
+  const callBack = (item, index) => {
+      return  <GoodComponent
+                key={`${index}-${item.name}`} 
+                name={item.name} category={item.category} 
+                position={item.position} 
+                price={item.price}
+              />
+  }
 
-  console.log(data);
   return (
     <div>
-      <GoodComponent name="조던" category="신발" position="신발장" price={300000} />
-      <GoodComponent name="티셔츠" category="옷" position="박스1" price={30000} />
+      {data.map(callBack)}
     </div>
   );
 }
