@@ -1,16 +1,25 @@
 import React, { useState } from 'react';
+import {firestore} from './firebase'
 
 const App = () => {
   const [goods, setGoods] = useState([]);
 
   const handleClick = () => {
-    //let delayedData;
-    let delayedData = [];
-    setTimeout(() => {
-      delayedData = data;
-      console.log(delayedData)
-      setGoods(delayedData)
-    }, 2000)
+    firestore
+      .collection('goods')
+      .get()
+      .then(querySnapshot => {
+        const myArr = [];
+        querySnapshot.forEach(doc => {
+          // doc.data() is never undefined for query doc snapshots
+          myArr.push(doc.data());
+        });
+        setGoods(myArr);
+      })
+      .catch(error => {
+        console.log('Error getting documents: ', error);
+      });
+
   }
 
   return (
