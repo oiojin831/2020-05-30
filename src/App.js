@@ -42,7 +42,8 @@ const App = () => {
         setName("");
         setCategory("");
         setPosition("");
-        setPrice(0);
+        setPrice(0)
+        setGoods((prev) => [...prev, newData]);
       })
       .catch((error) => {
         console.error("Error adding document: ", error);
