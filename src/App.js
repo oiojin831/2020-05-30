@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const App = () => {
+  const [goods, setGoods] = useState([]);
+
   return (
     <div>
-      {data.map((item, index) => {
+      <button onClick={() => setGoods(data)}> set data</button>
+      {goods.map((item, index) => {
         return <GoodComponent
           key={`${index}-${item.name}`}
           name={item.name} category={item.category}
